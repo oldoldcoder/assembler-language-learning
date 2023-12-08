@@ -50,7 +50,7 @@
          xor dx,dx
          div bx
          mov [0x7c00+number+0x01],dl   ;保存十位上的数字
-
+      ; 测试diff
          ;求百位上的数字
          xor dx,dx
          div bx

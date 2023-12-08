@@ -15,8 +15,7 @@ _start:
     LEA SI, [hello_string]
     MOV AH,0X07     ;背景色
 WRITE_LOOP:
-    MOV AL,[SI]
-    INC SI
+    LODSB
     STOSW
     loop WRITE_LOOP
     infi: jmp near infi    
