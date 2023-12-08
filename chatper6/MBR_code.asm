@@ -6,13 +6,13 @@ section .text
     global _start   ;定义切入点
 _start:
     ORG 0X7C00      ;装到主引导区域
-    hello_string db 'hello world',0
     MOV AX,0XB800
     MOV ES,AX
-    ;下面显示字符串 'hello world'
-    MOV DI,0x00     ;设置偏移量0x00,di目的变址寄存器
-    MOV CX,11     ;字符串长度
-    LEA SI, [hello_string]
+    hello_string db 'hello world',0;下面显示字符串 'hello world'
+    MOV DI,0     ;设置偏移量0x00,di目的变址寄存器
+    MOV DI,0     ;设置偏移量0x00,di目的变址寄存器
+    MOV CX,11     ;字符串长度   
+    MOV SI, hello_string
     MOV AH,0X07     ;背景色
 WRITE_LOOP:
     LODSB
@@ -21,3 +21,4 @@ WRITE_LOOP:
     infi: jmp near infi    
     times 510-($-$$) db 0
     DB 0x55,0xAA
+; 为什么会吃掉一条指令？为什么定义在数据区会没有东西？
